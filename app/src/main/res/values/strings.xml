@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Student Management</string>
+    <string name="james_mutuma">James Mutuma</string>
+    <string name="jamemutuma38_gmail_com">jamemutuma38@gmail.com</string>
+    <string name="_254748030376">+254748030376</string>
+    <string name="cat_input">Cat Input</string>
+    <string name="exam_input">Exam Input</string>
+    <string name="marks">Marks Input</string>
+    <string name="submit">Submit</string>
+    <string name="subject">Subject</string>
+    <string name="student_name">Student Name</string>
+    <string name="student_s_name">Student\'s Name</string>
+    <string name="Subject">Subject:</string>
+    <string name="Cat">Cat:</string>
+    <string name="Exam">Exam:</string>
+    <string name="Marks">Marks:</string>
+    <string name="mathematics">Mathematics</string>
+    <string name="cat">Cat</string>
+    <string name="exam">Exam</string>
+    <string name="mark">Marks</string>
+</resources>
