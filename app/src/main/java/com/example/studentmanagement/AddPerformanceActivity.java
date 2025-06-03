@@ -19,7 +19,7 @@ public class AddPerformanceActivity extends AppCompatActivity {
 
     String strname, strsubject, strcat, strexam, strmarks;
 
-    Details student;
+    Details details;
     DatabaseReference dbRef;
 
     @Override
@@ -55,8 +55,8 @@ public class AddPerformanceActivity extends AppCompatActivity {
                 exam.setText("");
                 marks.setText("");
 
-                Details student = new Details(strname, strsubject, strcat, strexam, strmarks);
-                connectingToFirebase(student);
+                Details details = new Details(strname, strsubject, strcat, strexam, strmarks);
+                connectingToFirebase(details);
 
                 Intent intent= new Intent(AddPerformanceActivity.this, SeeDetails.class);
                 startActivity(intent);
@@ -68,7 +68,7 @@ public class AddPerformanceActivity extends AppCompatActivity {
 
     }
 
-    private void connectingToFirebase(Details student) {
+    private void connectingToFirebase(Details details) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("details");
     }

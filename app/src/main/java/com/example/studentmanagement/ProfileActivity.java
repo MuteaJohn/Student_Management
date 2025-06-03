@@ -10,7 +10,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class ProfileActivity extends AppCompatActivity {
     TextView name, email, phone;
-//    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,10 +19,5 @@ public class ProfileActivity extends AppCompatActivity {
         name= findViewById(R.id.name);
         email= findViewById(R.id.email);
         phone= findViewById(R.id.phone);
-//        user = FirebaseAuth.getInstance().getCurrentUser();
-//
-//        if (user != null) {
-//            profileText.setText("Email: " + user.getEmail());
-//        }
     }
 }

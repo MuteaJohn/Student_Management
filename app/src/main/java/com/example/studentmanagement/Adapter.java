@@ -13,21 +13,21 @@ import java.util.List;
 
 public class Adapter extends BaseAdapter {
     Context context;
-    List<Details> details;
+    List<Details> alldetails;
 
-    public Adapter(Context context, List<Details> details) {
-        this.details = details;
+    public Adapter(Context context, List<Details> alldetails) {
+        this.alldetails = alldetails;
         this.context = context;
     }
 
     @Override
     public int getCount() {
-        return details.size();
+        return alldetails.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return details.get(position);
+        return alldetails.get(position);
     }
 
     @Override
@@ -45,10 +45,10 @@ public class Adapter extends BaseAdapter {
         TextView Marks = convertView.findViewById(R.id.marks);
 
 
-        String subject = details.get(position).getSubject() ;
-        String cat = details.get(position).getCat();
-        String exam = details.get(position).getExam();
-        String marks = details.get(position).getMarks();
+        String subject = alldetails.get(position).getSubject() ;
+        String cat = alldetails.get(position).getCat();
+        String exam = alldetails.get(position).getExam();
+        String marks = alldetails.get(position).getMarks();
 
 
         Subject.setText(subject);

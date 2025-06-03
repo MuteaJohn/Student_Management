@@ -1,10 +1,10 @@
 package com.example.studentmanagement;
 
+import static android.content.ContentValues.TAG;
 
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.util.Log;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,12 +16,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ViewPerformanceActivity extends AppCompatActivity {
+
     ListView listView;
-    ArrayList<String> list = new ArrayList<>();
-    ArrayAdapter<String> adapter;
-    DatabaseReference dbRef;
+    List<Details> alldetails;
+    Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,26 +30,36 @@ public class ViewPerformanceActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_performance);
 
         listView = findViewById(R.id.listView);
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+        alldetails = new ArrayList<>();
+
+        adapter = new Adapter(getApplicationContext(), alldetails);
         listView.setAdapter(adapter);
 
-        dbRef = FirebaseDatabase.getInstance().getReference("students");
+        addelements();
+    }
 
-        dbRef.addValueEventListener(new ValueEventListener() {
+    private void addelements() {
+        alldetails.add(new Details("name", "subject", "cat", "exam", "marks"));
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("details");
+
+
+        myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                list.clear();
-                for (DataSnapshot ds : snapshot.getChildren()) {
-                    StudentPerformance sp = ds.getValue(StudentPerformance.class);
-                    assert sp != null;
-                    list.add(sp.name + " - " + sp.subject + " : " + sp.marks);
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Details details = snapshot.getValue(Details.class);
+                    if (details != null) {
+                        alldetails.add(details);
+                    };
                 }
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ViewPerformanceActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
     }

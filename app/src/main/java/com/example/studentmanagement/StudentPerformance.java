@@ -7,7 +7,6 @@ public class StudentPerformance {
     public String marks;
 
     public StudentPerformance() {
-        // Required for Firebase
     }
 
     public StudentPerformance(String name, String subject, String marks) {
